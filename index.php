@@ -73,6 +73,7 @@ if (is_nan($n) || $n < 8) {
 
             function isValid(row, col) {
                 for (let i = 0; i < row; ++i) {
+                    //we check the diagonal
                     if (queens[i] == col || Math.abs(i - row) == Math.abs(queens[i] - col))
                         return false;
                 }
@@ -95,7 +96,7 @@ if (is_nan($n) || $n < 8) {
                     queens[row] = col;
 
                     solve(row + 1);
-
+                    
                     queens[row] = -1;
                 }
             }
@@ -115,9 +116,10 @@ if (is_nan($n) || $n < 8) {
         for (let i = 0; i < tablero.length; ++i) {
             for (let j = 0; j < tablero[i].length; ++j) {
                 let noQueen = parseInt(j) + 1;
-                let Col = tablero[i][j].indexOf("Q");
-                Col = parseInt(Col) + 1;
-                result.innerHTML += "Queen #" + noQueen + ": [" + tablero[i][j] + "] (Fila " + noQueen + ", Columna " + Col + ")<br>";
+                let noColumn = tablero[i][j].indexOf("Q");
+                noColumn = parseInt(noColumn) + 1;
+                //Example: Queen #1 [--Q--] (Fila 1, Columna 2)
+                result.innerHTML += "Queen #" + noQueen + ": [" + tablero[i][j] + "] (Fila " + noQueen + ", Columna " + noColumn + ")<br>";
             }
             result.innerHTML += "<br>";
         }
